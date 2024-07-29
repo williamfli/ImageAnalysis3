@@ -493,8 +493,7 @@ def match_Enhancer_to_DNA(enhancer_dic, region_dic):
     return _region_dic
 
 # function for finding bead_channel given color_usage profile
-def find_bead_channel(__color_dic, __bead_mark='beads'):
-    #print(__color_dic.keys())
+def find_bead_channel(__color_dic, __bead_mark='DAPI'):
     '''Given a color_dic loaded from Color_Usage file, return bead channel if applicable'''
     __bead_channels = []
     for __name in sorted(__color_dic.keys(), key=lambda _v:int( re.split(r'^H([0-9]+)[RQBUGCMPL](.*)', _v)[1] ) ):
