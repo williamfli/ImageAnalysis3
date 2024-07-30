@@ -13,6 +13,4 @@ import cv2
 import seaborn as sns
 # reload
 from importlib import reload
-# add Document to path
-sys.path.append(r'E:\Users\puzheng\Documents')
 
