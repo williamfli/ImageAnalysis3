@@ -2,6 +2,7 @@ from multiprocessing.reduction import ForkingPickler, AbstractReducer
 
 class ForkingPickler2(ForkingPickler):
     def __init__(self, *args):
+        args = list(args)
         if len(args) > 1:
             args[1] = 2
         else:
