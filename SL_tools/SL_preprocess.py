@@ -572,6 +572,9 @@ def load_aligned_bead_images  (_hyb_id, _drift,
                                  correction_folder,):
     from ..io_tools.load import correct_fov_image
     _ind = _hyb_id
+    print('Load_aligned_bead_images length fov_annotated_folders:', len(fov_annotated_folders), flush=True)
+    print('Load_aligned_bead_images fov_annotated_folders', fov_annotated_folders, flush=True)
+    print('Load_aligned_bead_images _ind:', _ind, flush=True)
     _bead_folder = fov_annotated_folders[_ind]
     _bead_filename = os.path.join(_bead_folder, fov_name)
     _drift_channel = _drift_channel

@@ -96,6 +96,7 @@ class Field_of_View():
             self.data_folder = [str(_fd) for _fd in parameters['data_folder']]
         else:
             self.data_folder = [str(parameters['data_folder'])]
+        print('Length of self.data_folder', len(self.data_folder))
         ## extract hybe folders and field-of-view names
         self.folders = []
         _all_fov_names = []
@@ -103,9 +104,11 @@ class Field_of_View():
             from ..io_tools.data import get_folders
             try:
                 _hyb_fds, _fovs = get_folders(_fd, feature='H', verbose=True)
+                print(f"Hyb folders: {_hyb_fds}")
                 self.folders += _hyb_fds # here only extract folders not fovs
                 _all_fov_names.append(_fovs)
             except:
+                print('Failed for folder:', _fd)
                 pass
         # select longest
         _fovs = _all_fov_names[np.argmax([len(_fs) for _fs in _all_fov_names])]

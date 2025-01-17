@@ -283,7 +283,7 @@ def Calculate_Bead_Drift(folders, fovs, fov_id, num_threads=12, drift_size=500, 
 def Illumination_correction(im, correction_channel, crop_limits=None, 
                             all_channels=_allowed_colors, single_im_size=_image_size, 
                             cropped_profile=None, correction_folder=_correction_folder,
-                            profile_dtype=np.float, image_dtype=np.uint16,
+                            profile_dtype=float, image_dtype=np.uint16,
                             ic_profile_name='illumination_correction', correction_power=1, verbose=True):
     """Function to do fast illumination correction in a RAM-efficient manner
     Inputs:
@@ -369,7 +369,7 @@ def Illumination_correction(im, correction_channel, crop_limits=None,
 def Chromatic_abbrevation_correction(im, correction_channel, target_channel='647', crop_limits=None, 
                                      all_channels=_allowed_colors, single_im_size=_image_size,
                                      drift=np.array([0,0,0]), correction_folder=_correction_folder, 
-                                     profile_dtype=np.float, image_dtype=np.uint16,
+                                     profile_dtype=float, image_dtype=np.uint16,
                                      cc_profile_name='chromatic_correction', verbose=True):
     """Chromatic abbrevation correction for given image and crop
         im: 3d image, np.ndarray or np.memmap
@@ -541,7 +541,7 @@ def _mean_xy_profle(im_filename, color, all_colors=_allowed_colors, frame_per_co
                                z_shift_corr=z_shift_corr, hot_pixel_remove=hot_pixel_remove, 
                                illumination_corr=False, chromatic_corr=False,
                                return_limits=False, verbose=False)
-    _im = _im.astype(np.float)
+    _im = _im.astype(float)
     # seeding
     _seeds = visual_tools.get_seed_in_distance(_im, th_seed_percentile=seeding_th_per, dynamic=True)
     for _sd in _seeds:
@@ -1481,7 +1481,7 @@ def Generate_bleedthrough_correction(folder_list, channel_list,
 
         # transpose first two axes
         bld_corr_profile = bld_corr_profile.transpose((1,0,2,3))
-        inv_corr_profile = np.zeros(np.shape(bld_corr_profile), dtype=np.float)
+        inv_corr_profile = np.zeros(np.shape(bld_corr_profile), dtype=float)
         for _i in range(np.shape(bld_corr_profile)[-2]):
             for _j in range(np.shape(bld_corr_profile)[-1]):
                 inv_corr_profile[:,:,_i,_j] = np.linalg.inv(bld_corr_profile[:,:,_i,_j])
@@ -1502,7 +1502,7 @@ def Bleedthrough_correction(input_im, crop_limits=None, all_channels=_allowed_co
                             normalization=False,
                             z_shift_corr=True, hot_pixel_remove=True,
                             profile_basename='bleedthrough_correction_',
-                            profile_dtype=np.float, image_dtype=np.uint16,
+                            profile_dtype=float, image_dtype=np.uint16,
                             return_limits=False, verbose=True):
     """Bleedthrough correction for a composite image
     Inputs:
@@ -1516,7 +1516,7 @@ def Bleedthrough_correction(input_im, crop_limits=None, all_channels=_allowed_co
         drift: 3d drift vector for this image, 1d-array (default:np.array([0,0,0]))
         correction_folder: correction folder to find correction profile, string of path (default: Z://Corrections/)
         profile_basename: base filename for bleedthrough correction profile file, str (default: 'Bleedthrough_correction_matrix')
-        profile_dtype: data type for correction profile, numpy datatype (default: np.float)
+        profile_dtype: data type for correction profile, numpy datatype (default: float)
         image_dtype: image data type, numpy datatype (default: np.uint16)
         return_limits: return modified limits, 3x2 np.ndarray
         verbose: say something!, bool (default: True)
@@ -1576,7 +1576,7 @@ def Bleedthrough_correction(input_im, crop_limits=None, all_channels=_allowed_co
             print(f"-- correcting bleedthrough for images")
         _ims = input_im
         _dft_limits = crop_limits
-    _ims = [_im.astype(np.float) for _im in _ims]
+    _ims = [_im.astype(float) for _im in _ims]
     #print(time.time()-_start_time)
     # load profile
     if verbose:
