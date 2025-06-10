@@ -6,12 +6,11 @@ import numpy as np
 import os,sys,subprocess
 
 #import tools LibraryTools
-from . import LibraryTools
-from .LibraryTools import fastaread, fastawrite
-from .LibraryTools import constant_zero_dict
+from src.ImageAnalysis3.library_tools.LibraryTools import fastaread, fastawrite
+from src.ImageAnalysis3.library_tools.LibraryTools import constant_zero_dict
 
-from .LibraryTools import seqrc
-from .LibraryTools import OTTable
+from src.ImageAnalysis3.library_tools.LibraryTools import seqrc
+from src.ImageAnalysis3.library_tools.LibraryTools import OTTable
 
 #python functions to convert seq->number
 def seq2Int(seq):
